@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:${N8N_VERSION}
+    restart: always
+    ports:
+      - "${HOST_PORT}:5678"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - WEBHOOK_URL=${WEBHOOK_URL}
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
+      - NODE_FUNCTION_ALLOW_EXTERNAL=${NODE_FUNCTION_ALLOW_EXTERNAL}
+      - N8N_PUBLIC_API_DISABLED=${N8N_PUBLIC_API_DISABLED}
+      - N8N_PUBLIC_API_SWAGGERUI_DISABLED=${N8N_PUBLIC_API_SWAGGERUI_DISABLED}
+      - N8N_SECURE_COOKIE=${N8N_SECURE_COOKIE}
+    volumes:
+      - ./n8n_data:/home/node/.n8n
